@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    body {
+        font-family: "Inter";
+    }
+}
+
+.nav-fixed {
+    @apply fixed z-[9999];
+}
