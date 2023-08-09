@@ -73,9 +73,9 @@
                                         @else
                                             text-gray-800 @endif">
                                         @if ($user->isAdmin)
-                                            {{ $user->isAdmin }}
+                                            Admin
                                         @else
-                                            {{ $user->isAdmin }}
+                                            Fotografer
                                         @endif
                                     </td>
                                     <td class="px-6 py-4">

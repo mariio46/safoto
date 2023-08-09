@@ -50,7 +50,6 @@
     <div class="flex justify-end items-center">
         @if (session()->has('bioSuccess'))
             <div class="flex items-center mr-3 mt-7">
-                {{-- <p class="italic ">Saved!</p> --}}
                 <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
                     class="text-sm text-gray-600 dark:text-gray-400 italic">Saved!</p>
             </div>

@@ -97,14 +97,30 @@
         </div>
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
             <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium  rounded-lg  md:flex-row md:space-x-8 md:mt-0 ">
-                @foreach ($navMenu as $menu => $url)
-                    <li>
-                        <a href="{{ $url }}"
-                            class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:hover:text-teal-400 md:p-0 ">
-                            {{ $menu }}
-                        </a>
-                    </li>
-                @endforeach
+                <li>
+                    <a href="/"
+                        class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:hover:text-teal-400 md:p-0 ">
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/#albums"
+                        class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:hover:text-teal-400 md:p-0 ">
+                        Albums
+                    </a>
+                </li>
+                <li>
+                    <a href="/#service"
+                        class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:hover:text-teal-400 md:p-0 ">
+                        Service
+                    </a>
+                </li>
+                <li>
+                    <a href="/#contact"
+                        class="block py-2 pl-3 pr-4 text-white rounded hover:bg-gray-100 hover:text-black md:hover:bg-transparent md:hover:text-teal-400 md:p-0 ">
+                        Contact
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

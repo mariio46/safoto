@@ -60,7 +60,7 @@
 
                         {{-- Input 3 --}}
                         <label for="year_id" class="block mb-2 text-sm font-medium text-gray-900">Year</label>
-                        <select id="year_id" name="year_id" id="year_id"
+                        <select id="year_id" name="year_id"
                             class="mb-3 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
                             <option selected disabled readonly>Choose Year</option>
                             @foreach ($years as $year)
