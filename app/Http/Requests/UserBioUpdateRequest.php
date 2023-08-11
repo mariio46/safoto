@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Biodata;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,12 +23,12 @@ class UserBioUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'fullName'      => ['required', 'string', 'max:255'],
-            'birthDay'      => ['date'],
-            'birthCity'     => ['string', 'max:255'],
-            'instagram'     => ['max:255'],
-            'facebook'      => ['max:255'],
-            'tiktok'        => ['max:255'],
+            'fullName' => ['required', 'string', 'max:255'],
+            'birthDay' => ['date'],
+            'birthCity' => ['string', 'max:255'],
+            'instagram' => ['max:255'],
+            'facebook' => ['max:255'],
+            'tiktok' => ['max:255'],
         ];
     }
 }

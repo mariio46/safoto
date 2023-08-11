@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Biodata;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class BiodataSeeder extends Seeder
@@ -21,7 +20,7 @@ class BiodataSeeder extends Seeder
                 'birthCity' => 'Parepare',
                 'instagram' => 'mario46_',
                 'facebook' => 'maario46_',
-                'tiktok'   => null,
+                'tiktok' => null,
             ]
         );
         Biodata::create(
@@ -32,7 +31,7 @@ class BiodataSeeder extends Seeder
                 'birthCity' => 'Parepare',
                 'instagram' => null,
                 'facebook' => null,
-                'tiktok'   => null,
+                'tiktok' => null,
             ]
         );
         Biodata::create(
@@ -44,7 +43,7 @@ class BiodataSeeder extends Seeder
                 'birthCity' => 'Parepare',
                 'instagram' => 'asdarkao',
                 'facebook' => null,
-                'tiktok'   => null,
+                'tiktok' => null,
             ]
         );
         Biodata::create(
@@ -55,7 +54,7 @@ class BiodataSeeder extends Seeder
                 'birthCity' => 'Parepare',
                 'instagram' => 'anjasbakri_',
                 'facebook' => null,
-                'tiktok'   => null,
+                'tiktok' => null,
             ]
         );
     }

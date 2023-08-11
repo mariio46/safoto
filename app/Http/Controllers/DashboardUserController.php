@@ -20,16 +20,16 @@ class DashboardUserController extends Controller
     public function index()
     {
         return view('dashboard.layout.content.users.index', [
-            'title'     => 'Safoto | Your Profile',
-            'biodata'  => Biodata::where('user_id', auth()->user()->id)->get(),
+            'title' => 'Safoto | Your Profile',
+            'biodata' => Biodata::where('user_id', auth()->user()->id)->get(),
         ]);
     }
 
     public function edit(User $user)
     {
         return view('dashboard.layout.content.users.edit', [
-            'title'     => 'Safoto | Edit Your Profile',
-            'userBio'  => $user->biodata,
+            'title' => 'Safoto | Edit Your Profile',
+            'userBio' => $user->biodata,
             'userInfo' => $user,
         ]);
     }
@@ -57,8 +57,9 @@ class DashboardUserController extends Controller
         }
         User::where('id', Auth::user()->id)->update([
             // Result of Custom Name File
-            'profile' => $file->storeAs('image/user-profile', 'photo-by' . '-' . Auth::user()->username . '-' . mt_rand(0, 9999999999) . '.' . $orginalExtension),
+            'profile' => $file->storeAs('image/user-profile', 'photo-by'.'-'.Auth::user()->username.'-'.mt_rand(0, 9999999999).'.'.$orginalExtension),
         ]);
+
         return back()->with('pictureSuccess', 'Saved!');
     }
 
@@ -69,6 +70,7 @@ class DashboardUserController extends Controller
             'username' => strtolower($request->username),
             'email' => $request->email,
         ]);
+
         return to_route('users.edit', $request->username)->with('infoSuccess', 'Saved!');
     }
 
@@ -82,6 +84,7 @@ class DashboardUserController extends Controller
             'facebook' => $request->facebook,
             'tiktok' => $request->tiktok,
         ]);
+
         return back()->with('bioSuccess', 'Saved!');
     }
 
@@ -89,26 +92,30 @@ class DashboardUserController extends Controller
     {
         if ($option == 'user') {
             if (Hash::check($request->current_password, Auth::user()->password)) {
-                # code...
+                // code...
                 auth()->user()->update(['password' => Hash::make($request->password)]);
+
                 return back()->with('success', 'Success, Password has been updated!');
             } else {
                 throw ValidationException::withMessages([
                     'current_password' => 'Your current password does not match to our record',
                 ]);
+
                 return to_route('users.edit', Auth::user())->with('error', 'Warning, Update password failed!');
             }
         } elseif ($option == 'managementusers') {
             if (Hash::check($request->current_password, $user->password)) {
-                # code...
+                // code...
                 User::where('id', $user->id)->update([
                     'password' => Hash::make($request->password),
                 ]);
+
                 return back()->with('success', 'Success, Password has been updated!');
             } else {
                 throw ValidationException::withMessages([
                     'current_password' => 'Your current password does not match to our record',
                 ]);
+
                 return to_route('usersmanagement.edit', $user)->with('error', 'Warning, Update password failed!');
             }
         } else {

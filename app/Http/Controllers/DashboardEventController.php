@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DashboardEventController extends Controller
 {
@@ -16,8 +16,8 @@ class DashboardEventController extends Controller
         return view(
             'dashboard.layout.content.events.index',
             [
-                'title'     => 'Safoto | All Events',
-                'events'    => Event::select(['eventName', 'slug'])->withCount('pictures')->latest()->paginate(5),
+                'title' => 'Safoto | All Events',
+                'events' => Event::select(['eventName', 'slug'])->withCount('pictures')->latest()->paginate(5),
             ]
         );
     }
@@ -25,7 +25,7 @@ class DashboardEventController extends Controller
     public function create()
     {
         return view('dashboard.layout.content.events.create', [
-            'title'     => 'Safoto | New Events',
+            'title' => 'Safoto | New Events',
         ]);
     }
 
@@ -38,16 +38,17 @@ class DashboardEventController extends Controller
         $validateEvents = $request->validate(
             [
                 'eventName' => 'required|string|max:255',
-                'slug'      => '',
+                'slug' => '',
             ],
             [
-                'eventName.required'        => 'Event City is required',
+                'eventName.required' => 'Event City is required',
             ],
         );
 
         // dd($validateEvents);
 
         Event::create($validateEvents);
+
         return to_route('events.index')->with('success', 'Success, Event has been added!');
     }
 
@@ -84,12 +85,13 @@ class DashboardEventController extends Controller
             ];
 
         if ($request->slug != $event->slug) {
-            # code...
+            // code...
             $rules['slug'] = 'required|max:255|unique:events';
         }
         $validateEvents = $request->validate($rules);
 
         Event::where('id', $event->id)->update($validateEvents);
+
         return to_route('events.index')->with('success', 'Success, Event has been edited!');
     }
 
@@ -102,6 +104,7 @@ class DashboardEventController extends Controller
             return to_route('events.index')->with('error', 'Error, This event has a picture, you cant delete it!');
         } else {
             Event::destroy($event->id);
+
             return to_route('events.index')->with('success', 'Success, Event has been deleted!');
         }
     }

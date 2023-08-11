@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 use App\Models\Event;
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class EventSeeder extends Seeder
 {
@@ -16,31 +15,31 @@ class EventSeeder extends Seeder
         Event::create(
             [
                 'eventName' => 'Kota Toraja',
-                'slug'      => 'kota-toraja',
+                'slug' => 'kota-toraja',
             ]
         );
         Event::create(
             [
                 'eventName' => 'Kabupaten Barru',
-                'slug'      => 'kabupaten-barru',
+                'slug' => 'kabupaten-barru',
             ]
         );
         Event::create(
             [
                 'eventName' => 'Kabupaten Pinrang',
-                'slug'      => 'kabupaten-pinrang',
+                'slug' => 'kabupaten-pinrang',
             ]
         );
         Event::create(
             [
                 'eventName' => 'Kota Parepare',
-                'slug'      => 'kota-parepare',
+                'slug' => 'kota-parepare',
             ]
         );
         Event::create(
             [
                 'eventName' => 'Kabupaten Sidrap',
-                'slug'      => 'kabupaten-sidrap',
+                'slug' => 'kabupaten-sidrap',
             ]
         );
     }

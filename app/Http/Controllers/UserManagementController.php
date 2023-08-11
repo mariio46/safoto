@@ -7,19 +7,19 @@ use App\Http\Requests\UserPictureUpdateRequest;
 use App\Models\Biodata;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class UserManagementController extends Controller
 {
     public function index()
     {
         return view('dashboard.layout.content.users-management.index', [
-            'title'     => 'Safoto | User List',
-            'users'     => User::select(['username', 'email', 'isAdmin'])->withCount('pictures')->get(),
+            'title' => 'Safoto | User List',
+            'users' => User::select(['username', 'email', 'isAdmin'])->withCount('pictures')->get(),
         ]);
     }
 
@@ -34,14 +34,15 @@ class UserManagementController extends Controller
         $request['username'] = strtolower($request->username);
         $validateNewUser = $request->validate(
             [
-                'username'      => 'required|alpha_dash|min:5|max:30|lowercase|unique:users',
-                'email'         => 'required|email:dns,rfc|unique:users',
-                'password'      => 'required|min:8|max:255',
+                'username' => 'required|alpha_dash|min:5|max:30|lowercase|unique:users',
+                'email' => 'required|email:dns,rfc|unique:users',
+                'password' => 'required|min:8|max:255',
             ]
         );
         $request['username'] = $request->username;
         $validateNewUser['password'] = Hash::make($validateNewUser['password']);
         User::create($validateNewUser);
+
         return to_route('usersmanagement.index')->with('success', 'Succes, New user has been added!');
     }
 
@@ -60,7 +61,7 @@ class UserManagementController extends Controller
         // dd($user->id);
         return view('dashboard.layout.content.users-management.show', [
             'title' => 'Safoto | User Detail',
-            'user'  => $user,
+            'user' => $user,
             'biodata' => Biodata::where('user_id', $user->id)->get(),
         ]);
     }
@@ -70,7 +71,7 @@ class UserManagementController extends Controller
         // dd($user->id);
         return view('dashboard.layout.content.users-management.edit', [
             'title' => 'Safoto | Update Profile',
-            'userBio'  => $user->biodata,
+            'userBio' => $user->biodata,
             'userInfo' => $user,
         ]);
     }
@@ -88,8 +89,9 @@ class UserManagementController extends Controller
         }
         User::where('id', $request->id)->update([
             // Result of Custom Name File
-            'profile' => $file->storeAs('image/user-profile', 'photo-by' . '-' . $request->username . '-' . mt_rand(0, 9999999999) . '.' . $orginalExtension),
+            'profile' => $file->storeAs('image/user-profile', 'photo-by'.'-'.$request->username.'-'.mt_rand(0, 9999999999).'.'.$orginalExtension),
         ]);
+
         return back()->with('pictureSuccess', 'Saved!');
     }
 
@@ -99,14 +101,15 @@ class UserManagementController extends Controller
         // dd($request->id);
         $request->validate(
             [
-                'username'      => ['string', 'max:255', 'unique:users,username,' . $request->id],
-                'email'         => ['string', 'max:255', 'unique:users,email,' . $request->id],
+                'username' => ['string', 'max:255', 'unique:users,username,'.$request->id],
+                'email' => ['string', 'max:255', 'unique:users,email,'.$request->id],
             ],
         );
         User::where('id', $request->id)->update([
             'username' => strtolower(str_replace(' ', '', $request->username)),
             'email' => $request->email,
         ]);
+
         return to_route('usersmanagement.edit', $request->username)->with('infoSuccess', 'Saved!');
     }
 
@@ -120,15 +123,16 @@ class UserManagementController extends Controller
             'facebook' => $request->facebook,
             'tiktok' => $request->tiktok,
         ]);
+
         return back()->with('bioSuccess', 'Saved!');
     }
 
     public function destroy(User $user)
     {
         return match ($user->id) {
-            Auth::user()->id    => to_route('usersmanagement.index')->with('error', 'Warning. You cant delete your own account!'),
-            2, 3, 4             => to_route('usersmanagement.index')->with('error', 'Warning. You cant delete default account!'),
-            default             => $user->profileCheck(),
+            Auth::user()->id => to_route('usersmanagement.index')->with('error', 'Warning. You cant delete your own account!'),
+            2, 3, 4 => to_route('usersmanagement.index')->with('error', 'Warning. You cant delete default account!'),
+            default => $user->profileCheck(),
         };
     }
 }

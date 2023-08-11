@@ -15,6 +15,7 @@ class HomeController extends Controller
             '../storage/image/default/art3.jpg',
             '../storage/image/default/art4.jpg',
         ];
+
         return view('layout.home', compact('users', 'pictures'));
     }
 }

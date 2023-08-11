@@ -1,11 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-// Controller Class 
+use App\Http\Controllers\GalleryController;
+// Controller Class
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\GalleryController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/profile/{user:username}', [ProfileController::class, 'getProfile'])->name('user.profile');
@@ -18,4 +17,4 @@ Route::controller(GalleryController::class)->group(function () {
     Route::get('/gallery/year/{year:slug}', 'getYearPicture')->name('year.gallery');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

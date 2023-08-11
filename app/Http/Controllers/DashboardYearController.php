@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
 use App\Models\Year;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class DashboardYearController extends Controller
 {
-
     public function index()
     {
         return view(
             'dashboard.layout.content.years.index',
             [
-                'title'     => 'Safoto | All Years',
-                'years'    => Year::select(['yearName', 'slug'])->withCount('pictures')->latest()->paginate(5),
+                'title' => 'Safoto | All Years',
+                'years' => Year::select(['yearName', 'slug'])->withCount('pictures')->latest()->paginate(5),
             ]
         );
     }
@@ -25,7 +24,7 @@ class DashboardYearController extends Controller
         return view(
             'dashboard.layout.content.years.create',
             [
-                'title'     => 'Safoto | Add New Year',
+                'title' => 'Safoto | Add New Year',
             ]
         );
     }
@@ -38,15 +37,16 @@ class DashboardYearController extends Controller
         $request['slug'] = Str::slug($request->yearName);
         $validateYears = $request->validate(
             [
-                'yearName'  => 'required|max:255|unique:years',
-                'slug'      => '',
+                'yearName' => 'required|max:255|unique:years',
+                'slug' => '',
             ],
             [
-                'yearName.required'         => 'Year City is required',
-                'yearName.unique'           => 'Year has already been taken.',
+                'yearName.required' => 'Year City is required',
+                'yearName.unique' => 'Year has already been taken.',
             ],
         );
         Year::create($validateYears);
+
         return to_route('years.index')->with('success', 'Success, Year has been added!');
     }
 
@@ -80,16 +80,17 @@ class DashboardYearController extends Controller
         $rules = [];
 
         if ($request->yearName != $year->yearName) {
-            # code...
+            // code...
             $rules['yearName'] = 'required|max:255|unique:years';
         }
         if ($request->slug != $year->slug) {
-            # code...
+            // code...
             $rules['slug'] = 'required|max:255|unique:years';
         }
         $validateYears = $request->validate($rules);
 
         Year::where('id', $year->id)->update($validateYears);
+
         return to_route('years.index')->with('success', 'Success, Year has been edited!');
     }
 
@@ -102,6 +103,7 @@ class DashboardYearController extends Controller
             return to_route('years.index')->with('error', 'Error, This year has a picture, you cant delete it!');
         } else {
             Year::destroy($year->id);
+
             return to_route('years.index')->with('success', 'Success, Year has been deleted!');
         }
     }

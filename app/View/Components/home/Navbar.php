@@ -22,10 +22,10 @@ class Navbar extends Component
     public function render(): View|Closure|string
     {
         $navbar = [
-            'Home'      => '/',
-            'Albums'      => '/#albums',
-            'Service'      => '/#service',
-            'Contact'      => '/#contact',
+            'Home' => '/',
+            'Albums' => '/#albums',
+            'Service' => '/#service',
+            'Contact' => '/#contact',
         ];
 
         return view('components.home.navbar', [

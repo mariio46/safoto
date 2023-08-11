@@ -16,6 +16,7 @@ class Year extends Model
     {
         return $this->hasMany(Picture::class);
     }
+
     public function getRouteKeyName(): string
     {
         return 'slug';

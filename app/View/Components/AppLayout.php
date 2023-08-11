@@ -12,9 +12,10 @@ class AppLayout extends Component
      * Create a new component instance.
      */
     public $title;
+
     public function __construct($title = null)
     {
-        $this->title = $title ?? "Studio";
+        $this->title = $title ?? 'Studio';
     }
 
     /**

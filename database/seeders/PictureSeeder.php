@@ -3,14 +3,13 @@
 namespace Database\Seeders;
 
 use App\Models\Picture;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class PictureSeeder extends Seeder
 {
     public function run(): void
     {
-        // Foto Asdar 
+        // Foto Asdar
         Picture::create([
             'pic_name' => 'img2.jpg',
             'alt_name' => 'Makassar',

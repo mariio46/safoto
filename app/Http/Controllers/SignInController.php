@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class SignInController extends Controller
 {
     //
-    public  function index()
+    public function index()
     {
         return view('auth.sign-in');
     }
@@ -16,16 +16,17 @@ class SignInController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username'     => ['required'],
-            'password'  => ['required'],
+            'username' => ['required'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             if (Auth::user()->isAdmin == 1) {
-                # code...
+                // code...
                 return to_route('usersmanagement.index');
             }
+
             return to_route('dashboard');
         }
 

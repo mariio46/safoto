@@ -22,8 +22,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         // New Arrow Function
-        Gate::define('admin', fn (User $user) =>  $user->isAdmin);
-        Gate::define('auth', fn (User $user) =>   !$user->isAdmin);
+        Gate::define('admin', fn (User $user) => $user->isAdmin);
+        Gate::define('auth', fn (User $user) => ! $user->isAdmin);
 
         // Old Arrow Function
         // Gate::define('admin', function (User $user) {

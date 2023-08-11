@@ -1,14 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
-// Controller Class 
-use App\Http\Controllers\SignInController;
-use App\Http\Controllers\DashboardPictureController;
 use App\Http\Controllers\DashboardEventController;
-use App\Http\Controllers\DashboardYearController;
+// Controller Class
+use App\Http\Controllers\DashboardPictureController;
 use App\Http\Controllers\DashboardUserController;
+use App\Http\Controllers\DashboardYearController;
+use App\Http\Controllers\SignInController;
 use App\Http\Controllers\UserManagementController;
+use Illuminate\Support\Facades\Route;
 
 // Group Auth/Sign-in
 Route::controller(SignInController::class)->group(function () {
